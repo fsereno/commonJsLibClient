@@ -9,8 +9,6 @@ function doAjax(obj,data) {
 		data: data
 	})
 	.done(function(result) {
-		
-		//console.log(result);
 
 		if (result.status === 'success') {
 
@@ -30,6 +28,7 @@ function doAjax(obj,data) {
 		
 	})
 	.always(function(result) {
+
 		$('#'+obj.id).find('button[type=submit]').prop('disabled', false);
 
 		var $recapture = $('.g-recaptcha'),
@@ -37,8 +36,14 @@ function doAjax(obj,data) {
 
 		if ($recaptures > 0) {
 
-			require('./recaptureReset.js')();
+			$recapture.each(function(i){
 
+				var recaptureId = i;
+
+				require('./recaptureReset.js')(recaptureId);
+
+			});
+			
 		}
 	});
 	

@@ -1,6 +1,6 @@
-function recaptureReset(){
+function recaptureReset(id){
 
-	grecaptcha.reset();
+	grecaptcha.reset(id);
 
 }
 
